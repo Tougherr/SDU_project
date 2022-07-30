@@ -16,14 +16,14 @@ int main() {
 
 	clock_t start, end;
 	start = clock();
-	for(int i=0;i<1000;i++)
+	for(int i=0;i<1000000;i++)
 		sm3(msg, msg_len, dgst1);
 
 	end = clock();
 	printf("%f\n", double(end - start));
 
 	start = clock();
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 1000000; i++)
 		op_sm3(msg, msg_len, dgst2);
 
 	end = clock();

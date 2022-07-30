@@ -32,5 +32,7 @@ if __name__=='__main__':
 
     test=PGP()
     a,b=test.sender(m)
+    print("数据加密：",a)
+    print("会话密钥加密：",b)
     m_=test.receiver(a,b)
-    print(m_.decode('utf-8'))
+    print("解密后消息：",m_.decode('utf-8'))

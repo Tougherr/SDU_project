@@ -1,6 +1,7 @@
 
 #include <string.h>
 #include "byteorder.h"
+#include "immintrin.h"
 #include "op_sm3.hpp"
 
 void op_sm3_init(opsm3_ctx_t* ctx)
@@ -119,14 +120,13 @@ void op_sm3_compress(uint32_t digest[8], const unsigned char block[64])
 		W[19 + 4 * j] = P1(W[19 + 4 * j - 16] ^ W[19 + 4 * j - 9] ^ ROTATELEFT(W[19 + 4 * j - 3], 15)) ^ ROTATELEFT(W[19 + 4 * j - 13], 7) ^ W[19 + 4 * j - 6];
 	}
 	for (j = 0; j < 8; j++) {
-		W1[0 + 8 * j] = W[0 + 8 * j] ^ W[4 + 8 * j];
-		W1[1 + 8 * j] = W[1 + 8 * j] ^ W[5 + 8 * j];
-		W1[2 + 8 * j] = W[2 + 8 * j] ^ W[6 + 8 * j];
-		W1[3 + 8 * j] = W[3 + 8 * j] ^ W[7 + 8 * j];
-		W1[4 + 8 * j] = W[4 + 8 * j] ^ W[8 + 8 * j];
-		W1[5 + 8 * j] = W[5 + 8 * j] ^ W[9 + 8 * j];
-		W1[6 + 8 * j] = W[6 + 8 * j] ^ W[10 + 8 * j];
-		W1[7 + 8 * j] = W[7 + 8 * j] ^ W[11 + 8 * j];
+		__m128i a = _mm_loadu_epi32(&W[0 + 8 * j]);
+		__m128i b = _mm_loadu_epi32(&W[4 + 8 * j]);
+		__m128i c = _mm_loadu_epi32(&W[8 + 8 * j]);
+		__m128i d = _mm_xor_si128(a, b);
+		__m128i e = _mm_xor_si128(b, c);
+		_mm_storeu_epi32(&W1[0 + 8 * j], d);
+		_mm_storeu_epi32(&W1[4 + 8 * j], e);
 	}
 
 	uint32_t tmp1 = 0x79CC4519;

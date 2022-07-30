@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <openssl/sm3.h>
 #include <openssl/evp.h>
+#include <math.h>
 
 using namespace std;
 
@@ -28,7 +29,9 @@ int main(int argc, char** argv) {
 	EVP_DigestUpdate(ctx, plain, plain_len);
 	EVP_DigestFinal(ctx, dgst, &dgst_len);
 
-	printf("message digest: ");
+	size_t cmp_bytes = 3;
+
+	printf("message   digest: ");
 	print_dgst(dgst);
 	EVP_MD_CTX_free(ctx);
 
@@ -42,7 +45,7 @@ int main(int argc, char** argv) {
 		EVP_DigestUpdate(ctx, attack, 32);
 		EVP_DigestFinal(ctx, dgst1, &dgst_len1);
 		EVP_MD_CTX_free(ctx);
-		int flag = memcmp(dgst, dgst1, 3);
+		int flag = memcmp(dgst, dgst1, cmp_bytes);
 		if (flag == 0) {
 			printf("collision digest: ");
 			print_dgst(dgst1);
