@@ -18,33 +18,22 @@ github账户：[Tougherr](https://github.com/Tougherr)
 
 设计编程语言c++、python
 
+## 运行指导
+python文件在安装gmssl库后可直接运行
 
+c++文件在安装GmSSL后通过vs编译器导入sln文件加载整个项目
 
-## 项目列表
+## 完成项目列表
 
 - [x] Implement the naive birthday attack of reduced SM3
 - [x] Implement the Rho method of reduced SM3
-- [ ] Implement length extension attack for SM3, SHA256, etc.
 - [x] Do your best to optimize SM3 implementation (software)
 - [x] Implement Merkle Tree following RFC6962
 
-- [ ] Do your best to optimize SM4 implementation (software)
-
-- [ ] Report on the application of this deduce technique in Ethereum with ECDSA
-- [ ] Implement SM2 with RFC6979
-- [ ] Verify the some pitfalls with proof-of-concept code
-- [ ] Implement the above ECMH scheme
 - [x] Implement a PGP scheme with SM2
 
-- [ ] Implement SM2 2P sign with real network communication
-- [ ] Implement SM2 2P decrypt with real network communication
-- [ ] PoC impl of the scheme, or do implement analysis by Google
 
-- [ ] Send a tx on Bitcoin testnet,and parse the tx data down to every bit,better write script yourself
-- [ ] Forge a signature to pretend that you are Satoshi
-
-- [ ] Research report on MPT
-
+其余项目未完成
 
 
 ## 项目介绍
