@@ -29,8 +29,8 @@ c++文件在安装GmSSL后通过vs编译器导入sln文件加载整个项目
 - [x] Implement the Rho method of reduced SM3
 - [x] Do your best to optimize SM3 implementation (software)
 - [x] Implement Merkle Tree following RFC6962
-
 - [x] Implement a PGP scheme with SM2
+- [x] Implement SM2 2P sign with real network communication
 
 
 其余项目未完成
@@ -135,3 +135,15 @@ python tree.py -m 【method】 -s 【size】 -c 【string】
 运行结果如下：
 
 ![[image](https://github.com/Tougherr/SDU_project/pic/QQ截图20220730202338.png)](https://github.com/Tougherr/SDU_project/blob/main/pic/QQ%E6%88%AA%E5%9B%BE20220730202338.png)
+
+
+
+### SM2 2P sign
+
+![QQ截图20220731133836](https://github.com/Tougherr/SDU_project/blob/main/pic/QQ%E6%88%AA%E5%9B%BE20220731133836.png)
+
+基于上图所示实现基于sm2的签名过程，分为client1.py和client2.py两方，首先运行client2.py等待连接的建立，再运行client1.py建立连接后进行三轮交互，ec.py中实现椭圆曲线上的基本运算操作。
+
+运行结果如下：
+
+![QQ截图20220731134411](https://github.com/Tougherr/SDU_project/blob/main/pic/QQ%E6%88%AA%E5%9B%BE20220731134411.png)
